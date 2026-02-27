@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User File System</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>📁 My Files</h1>
+
+    <div class="card">
+      <input
+        type="text"
+        id="searchBar"
+        oninput="searchFiles()"
+        placeholder="🔍 ค้นหาไฟล์..."
+        style="
+          width: 100%;
+          padding: 10px;
+          border-radius: 5px;
+          border: 1px solid #ddd;
+        "
+      />
+    </div>
+
+    <div class="card" id="uploadSection">
+      <h2>อัพโหลดไฟล์</h2>
+      <input type="file" id="fileInput" accept="image/*, .pdf, .zip, .txt" onchange="previewFile()" />
+      <p class="note">รองรับไฟล์ไม่เกิน 5MB</p>
+      
+      <div id="filePreview" style="display: none; margin: 15px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
+        <h3>📋 ตัวอย่างไฟล์</h3>
+        <p><strong>ชื่อ:</strong> <span id="previewName"></span></p>
+        <p><strong>ขนาด:</strong> <span id="previewSize"></span></p>
+        <p><strong>ชนิด:</strong> <span id="previewType"></span></p>
+        <div id="previewImage" style="margin-top: 10px;"></div>
+      </div>
+      
+      <br />
+      <button id="uploadBtn" onclick="uploadFile()">🚀 Upload</button>
+    </div>
+
+    <div class="card">
+      <h2 id="fileListTitle">ไฟล์ของฉัน</h2>
+      <p class="note">รายการไฟล์ทั้งหมด</p>
+      <ul id="fileList"></ul>
+    </div>
+
+    <button
+      id="logoutBtn"
+      style="margin: auto; display: block"
+      onclick="handleLogout()"
+    >
+      Logout
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+      if (sessionStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "login.html";
+      }
+
+      // Logic ตรวจสอบ Role เพื่อปรับ UI
+      document.addEventListener("DOMContentLoaded", () => {
+        const user = JSON.parse(sessionStorage.getItem("currentUser"));
+        const uploadSection = document.getElementById("uploadSection");
+        const title = document.getElementById("fileListTitle");
+
+        if (user && user.role === "admin") {
+          // ถ้าเป็น admin ให้ซ่อนส่วนอัปโหลด และเปลี่ยนหัวข้อ
+          uploadSection.style.display = "none";
+          title.innerText = "ไฟล์ทั้งหมดในระบบ (Admin View)";
+        }
+
+        // โหลดรายการไฟล์เมื่อหน้าเว็บโหลดเสร็จ
+        loadFiles();
+      });
+
+      function handleLogout() {
+        sessionStorage.clear();
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

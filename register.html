@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>สมัครสมาชิก - My Files</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .login-box {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .login-box h1 {
+        margin-bottom: 25px;
+        color: #333;
+        font-size: 24px;
+      }
+
+      .form-group {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: bold;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 14px;
+        background-color: #667eea;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+
+      .login-btn:hover {
+        background-color: #5568d3;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .error-msg {
+        color: #ff4d4d;
+        margin-bottom: 15px;
+        font-size: 14px;
+        display: none;
+        padding: 10px;
+        background-color: #ffe6e6;
+        border-radius: 5px;
+      }
+
+      .success-msg {
+        color: #28a745;
+        margin-bottom: 15px;
+        font-size: 14px;
+        display: none;
+        padding: 10px;
+        background-color: #e6f3e6;
+        border-radius: 5px;
+      }
+
+      .login-link {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .login-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <h1>📝 สมัครสมาชิก</h1>
+
+        <div id="regErrorMsg" class="error-msg"></div>
+        <div id="regSuccessMsg" class="success-msg">สมัครสมาชิกสำเร็จ! กำลังเปลี่ยนไปหน้า Login...</div>
+
+        <div class="form-group">
+          <label for="regUsername">ชื่อผู้ใช้</label>
+          <input type="text" id="regUsername" placeholder="กรอกชื่อผู้ใช้" />
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">รหัสผ่าน</label>
+          <input type="password" id="regPassword" placeholder="กรอกรหัสผ่าน (อย่างน้อย 4 ตัว)" />
+        </div>
+
+        <div class="form-group">
+          <label for="regConfirmPassword">ยืนยันรหัสผ่าน</label>
+          <input type="password" id="regConfirmPassword" placeholder="ยืนยันรหัสผ่าน" />
+        </div>
+
+        <button class="login-btn" onclick="handleRegister()">สมัครสมาชิก</button>
+
+        <div class="login-link">
+          มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบ</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
